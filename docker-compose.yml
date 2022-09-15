@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  web:
+    container_name: evolving_solutions_url_shortener_api
+    image: evolvingsoftware/evolving_solutions_url_shortener_api:alpha
+    ports:
+      - "8844:8844"
+    environment:
+      - BASE_URL=https://evolveurl.co
+      - MONGODB_URI=mongodb://evolvingadmin:Spr!ngW!nter20@2@evolveurl.co:27017/evolving_solutions?directConnection=true&retryWrites=true
+  mongodb:
+    container_name: mongodb
+    image: mongo:5.0
+    ports:
+      - "27017:27017"
+    # add user and password to mongodb
+    environment:
+      - MONGO_INITDB_DATABASE=evolving_solutions
+  jenkins_slave:
+    container_name: jenkins_slave
+    image: jenkins/jenkins:lts
+    ports:
+      - "8080:8080"
+    environment:
+      - JENKINS_SLAVE_HOME=/var/jenkins_home
+      - JENKINS_URL=http://jenkins.evolvingsoftware.io
+      - JENKINS_USERNAME=jenkins
+      - JENKINS_PASSWORD=jenkins
+      - JENKINS_EXECUTORS=1
+      - JENKINS_OPTS=-fs /jenkins_home
