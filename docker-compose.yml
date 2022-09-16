@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3"
 services:
   web:
     container_name: evolving_solutions_url_shortener_api
