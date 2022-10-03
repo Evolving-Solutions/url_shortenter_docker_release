@@ -12,4 +12,6 @@ RUN apt-get update
 
 RUN apt-get upgrade -y
 
+ENV HOME=/home
+
 CMD ["url_shortener"]
